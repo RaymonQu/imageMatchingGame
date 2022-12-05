@@ -11,3 +11,27 @@ h2{
     text-align: center;
     margin: 50px;
 }
+
+img{
+    height: 200px;
+    width: 150px;
+}
+
+.container{
+    display: grid;
+    grid-auto-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    grid-gap: 10px;
+}
+
+.resetButton{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.resetButton > button{
+    width: 80px;
+    height: 20px;
+}
