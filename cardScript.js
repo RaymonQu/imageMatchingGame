@@ -30,4 +30,5 @@ function initialize() {
 function flipCard(a){
 	x = document.getElementById("nok1");
 	x.src = img4.src;
+	console.log(1);
 }
