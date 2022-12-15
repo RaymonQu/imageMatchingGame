@@ -1,14 +1,7 @@
 function initialize() {
-
-	boardImages = [];
-	imagesGenerated = 0;
-	while(imagesGenerated < 16){
-
-	}
-
 	if (document.images) {
 		urlArray = ["images/ai1.png", "images/amaz.jpg", "images/American_Beaver.jpg", "images/city.png",
-					"images/nok.PNG", "images/sub.jpg", "images/wall.jpg", "images/cow.jpg", "images/cardback.png"];
+					"images/nok.PNG", "images/sub.jpg", "images/wall.jpg", "images/cow.jpg"];
 		images = [];
 		for (let i = 1; i < 10; i++){
 			images.push(new Image().src = urlArray[i]);
@@ -34,12 +27,17 @@ function initialize() {
         // img9.src = "images/cardback.png";
 	}
 
+	boardImages = [];
+	imagesGenerated = 0;
+	while(imagesGenerated < 16){
+		if()
+	}
 }
 
 function flipCard(a){
 	a = images.src()
 }
 
-function generateRandomImage(){
-	return 
+function generateRandomImageNum(){
+	return Math.floor((Math.random() * 8 + 1)) + 1
 }
