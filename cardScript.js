@@ -1,8 +1,11 @@
+correctCards = [];
+
 function initialize() {
 	gameover = false;
 	sourceCardFlipped = false;
 	score = 0;
 	lastImageClicked = null;
+	lastImageClickedId = null;
 	if (document.images) {
 		urlArray = ["images/ai1.png", "images/amaz.jpg", "images/American_Beaver.jpg", "images/city.png",
 					"images/nok.PNG", "images/sub.jpg", "images/wall.jpg", "images/cow.jpg", "images/cardback.png"];
@@ -16,14 +19,10 @@ function initialize() {
 	for (let i = 0; i < 8; i++){
 		randomFlags.push(false);
 	}
-	console.log(randomFlags);
 	imagesGenerated = 0;
 	let a = 7
-	counter = 0;
 	while(imagesGenerated < 16){
 		let randNum = generateRandomImageNum(a);
-		console.log(randNum);
-		console.log(images[randNum]);
 		if(!randomFlags[randNum] && typeof images[randNum] !== 'undefined'){
 			randomFlags[randNum] = true;
 			imagesGenerated++;
@@ -34,24 +33,27 @@ function initialize() {
 			imagesGenerated++;
 			delete images[randNum];
 		}
-		counter++;
 	}
 }
 
-
 function flipCard(a){
-	if(!gameover){
+	if(!gameover && !correctCards.includes(a)){
 		console.log(boardImages[a]);
 		console.log("image" + a);
 		firstImage = document.getElementById("image" + a);
 		if(!sourceCardFlipped){
 			firstImage.src = boardImages[a];
 			lastImageClicked = boardImages[a];
+			lastImageClickedId = a;
 			sourceCardFlipped = true;
 		}
 		else if(sourceCardFlipped){
-
-
+			firstImage.src = boardImages[a];
+			if (boardImages[a] == lastImageClicked) correctCards.push(a);
+			else setTimeout(() => {
+				firstImage.src = "images/cardback.png";
+				document.getElementById("image" + lastImageClickedId).src = "images/cardback.png";
+			}, 5000);
 			sourceCardFlipped = false;
 		}
 		updateScore();
