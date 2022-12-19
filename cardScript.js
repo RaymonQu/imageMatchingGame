@@ -41,7 +41,6 @@ function initialize() {
 
 function flipCard(a){
 	if(!gameover){
-
 		console.log(boardImages[a]);
 		console.log("image" + a);
 		firstImage = document.getElementById("image" + a);
@@ -56,6 +55,7 @@ function flipCard(a){
 
 			sourceCardFlipped = false;
 		}
+		gameover = checkGameState();
 	}
 }
 
@@ -74,4 +74,14 @@ function reset(){
 	}
 	console.log(urlArray[8]);
 	initialize();
+}
+
+function checkGameState(){
+	for(let i = 0; i < 16; i++){
+		let thisImage = document.getElementById("image" + i);
+		if (thisImage.src == urlArray[8]){
+			return true;
+		} 
+	}
+	return false;
 }
