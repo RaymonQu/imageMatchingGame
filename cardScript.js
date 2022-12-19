@@ -48,13 +48,13 @@ function flipCard(a){
 			firstImage.src = boardImages[a];
 			lastImageClicked = boardImages[a];
 			sourceCardFlipped = true;
-			updateScore();
 		}
 		else if(sourceCardFlipped){
 
 
 			sourceCardFlipped = false;
 		}
+		updateScore();
 		gameover = checkGameState();
 	}
 }
