@@ -10,7 +10,7 @@ function initialize() {
 	lastImageClickedId = null;
 	if (document.images) {
 		urlArray = ["images/ai1.png", "images/amaz.jpg", "images/American_Beaver.jpg", "images/city.png",
-					"images/nok.PNG", "images/sub.jpg", "images/wall.jpg", "images/cow.jpg", "images/cardback.png"];
+					"images/nok.PNG", "images/sub.jpg", "images/Wall.jpg", "images/cow.jpg", "images/cardback.png"];
 		images = [];
 		for (let i = 0; i < 9; i++){
 			images.push(new Image().src = urlArray[i]);
@@ -105,7 +105,7 @@ function checkGameState(){
 }
 
 function niceWords(b){
-	if(!b){
+	if(b){
 		if(score < 25){
 			hiddenWords.innerHTML = "You are definitely cheating";
 		}
