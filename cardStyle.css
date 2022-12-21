@@ -39,3 +39,9 @@ img{
 #score{
     text-align: center;
 }
+
+#hiddenMessage{
+    text-align: center;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+}

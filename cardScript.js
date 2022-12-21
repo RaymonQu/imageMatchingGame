@@ -1,6 +1,8 @@
-correctCards = [];
-
 function initialize() {
+	hiddenWords = document.getElementById("hiddenMessage");
+	hiddenWords.hidden = true;
+	timeOutDone = true; 
+	correctCards = [];
 	gameover = false;
 	sourceCardFlipped = false;
 	score = 0;
@@ -37,12 +39,12 @@ function initialize() {
 }
 
 function flipCard(a){
-	if(!gameover && !correctCards.includes(a)){
-		console.log(boardImages[a]);
-		console.log("image" + a);
+	if(!gameover && !correctCards.includes(a) && timeOutDone){
 		firstImage = document.getElementById("image" + a);
 		if(!sourceCardFlipped){
+			correctCards.push(a);
 			firstImage.src = boardImages[a];
+			console.log(boardImages[a]);
 			lastImageClicked = boardImages[a];
 			lastImageClickedId = a;
 			sourceCardFlipped = true;
@@ -50,15 +52,29 @@ function flipCard(a){
 		else if(sourceCardFlipped){
 			firstImage.src = boardImages[a];
 			if (boardImages[a] == lastImageClicked) correctCards.push(a);
-			else setTimeout(() => {
-				firstImage.src = "images/cardback.png";
-				document.getElementById("image" + lastImageClickedId).src = "images/cardback.png";
-			}, 5000);
+			else{ 
+				console.log(lastImageClicked);
+				var index = correctCards.indexOf(lastImageClicked);
+				console.log(index);
+				if (index === -1) {
+					console.log("reacjed");
+					correctCards.splice(index, 1);
+				}
+				timeOutDone = false;
+				setTimeout(() => {
+					firstImage.src = "images/cardback.png";
+					document.getElementById("image" + lastImageClickedId).src = "images/cardback.png";
+					timeOutDone = true;
+				}, 1000);
+				
+			}
 			sourceCardFlipped = false;
 		}
+		console.log(correctCards);
 		updateScore();
 		gameover = checkGameState();
 	}
+	niceWords(gameover);
 }
 
 function generateRandomImageNum(a){
@@ -74,7 +90,7 @@ function reset(){
 	for(let i = 0; i < 16; i++){
 		document.getElementById("image" + i).src = urlArray[8];
 	}
-	console.log(urlArray[8]);
+	document.getElementById("score").innerHTML = "Score: " + 0;
 	initialize();
 }
 
@@ -86,4 +102,19 @@ function checkGameState(){
 		} 
 	}
 	return false;
+}
+
+function niceWords(b){
+	if(!b){
+		if(score < 25){
+			hiddenWords.innerHTML = "You are definitely cheating";
+		}
+		else if(score < 50){
+			hiddenWords.innerHTML = "Poor score, try harder";
+		}
+		else{
+			hiddenWords.innerHTML = "Are you even trying mane?";
+		}
+		hiddenWords.hidden = false;
+	}
 }
