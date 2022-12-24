@@ -57,7 +57,6 @@ function flipCard(a){
 				var index = correctCards.indexOf(lastImageClicked);
 				console.log(index);
 				if (index === -1) {
-					console.log("reacjed");
 					correctCards.splice(index, 1);
 				}
 				timeOutDone = false;
@@ -74,7 +73,6 @@ function flipCard(a){
 		updateScore();
 		gameover = checkGameState();
 	}
-	niceWords(gameover);
 }
 
 function generateRandomImageNum(a){
@@ -98,23 +96,18 @@ function checkGameState(){
 	for(let i = 0; i < 16; i++){
 		let thisImage = document.getElementById("image" + i);
 		if (thisImage.src == urlArray[8]){
+			if(score < 25){
+				hiddenWords.innerHTML = "You are definitely cheating";
+			}
+			else if(score < 50){
+				hiddenWords.innerHTML = "Poor score, try harder";
+			}
+			else{
+				hiddenWords.innerHTML = "Are you even trying mane?";
+			}
+				hiddenWords.hidden = false;
 			return true;
 		} 
 	}
 	return false;
-}
-
-function niceWords(b){
-	if(b){
-		if(score < 25){
-			hiddenWords.innerHTML = "You are definitely cheating";
-		}
-		else if(score < 50){
-			hiddenWords.innerHTML = "Poor score, try harder";
-		}
-		else{
-			hiddenWords.innerHTML = "Are you even trying mane?";
-		}
-		hiddenWords.hidden = false;
-	}
 }
