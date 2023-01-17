@@ -9,11 +9,11 @@
 </head>
 <script src="cardScript.js"></script>
 <body onload="initialize()">
-    
+    <header>
     <h1>Match the Cards</h1>
     <h2>Rules: Each time you click on an image, your score goes up by one. <br>If you correctly match two images, 
         they will be revealed. If not, you will have to try to find its match again.</h2>
-
+    </header>
         <div class="container">
             <img id="image0" src="images/cardback.png" alt="noimages" onclick="flipCard(0)">
             <img id="image1" src="images/cardback.png" alt="noimages" onclick="flipCard(1)">
@@ -44,3 +44,5 @@
         </div>
 </body>
 </html>
+
+<!--Added page landmarks like header for easier naviagation. Chnaged the alt text to be slightly better.-->
